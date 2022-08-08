@@ -175,7 +175,7 @@
 
     <button id="hideArticles" class="textButtons">Hide Articles</button>
     <button id="hidePrepositions" class="textButtons">Hide Prepositions</button>
-    <button id="hideArticlesAndPrepositions" class="textButtons">Hide Articles And Prepositions</button>
+    <button id="hideArticlesAndPrepositionsAndRef" class="textButtons">Hide Articles, Prepositions, Refl. Pronouns</button>
 
 
    
@@ -215,7 +215,8 @@
       const letters = /^[A-ZäüöÄÜÖß]$/i
       const articles = ["der","dies","die","das","den","dem","des","einen","einem","einer","eines","eine","ein","Dieses","Diese","Dies","Die","Der","Das","Den","Dem","Einer","Einen","Einem","Eines","Eine","Ein"]
       const prepositions = ["am","ans","im","ins","à","ab","abseits","abzüglich","an","anfangs","angelegentlich","angesichts","anhand","anlässlich","anstatt","anstelle","auf","aufgrund","aus","ausgenommen","ausschließlich","außer","außerhalb","bar","behufs","bei","beiderseits,","beidseits","betreffs","bezüglich","binnen","bis","dank","diesseits","durch","einbezüglich","eingedenk","einschließlich","entgegen","entlang","entsprechend","exklusive","fern","fernab","für","gegen","gegenüber","gelegentlich","gemäß","gen","getreu","gleich","halber","hinsichtlich","hinter","in","inpuncto","infolge","inklusive","inmitten","innerhalb","je","jenseits","kontra","kraft","lang","längs","längsseits","laut","links","mangels","minus","mit","mitsamt","mittels","nach","nächst","nah,","nahe","namens","neben","nebst","nördlich","nordöstlich","nordwestlich","ob","oberhalb","ohne","östlich","per","plus","pro","rechts","rücksichtlich","samt","seit","seitens","seitlich","sonder","statt","südlich","südöstlich","südwestlich","trotz","über","um","willen","unfern","ungeachtet","unter","unterhalb","unweit","vermittels","vermöge","vis-a-vis","vis-à-vis","von","vonSeiten","vonseiten","vor","vorbehaltlich","während","wegen","westlich","wider","zeit","zu","zufolge","zugunsten","zulasten","zuliebe","zusätzlich","zuungunsten","zuwider","zuzüglich","zwecks","zwischen","Am","Ans","Im","Ins","À","Ab","Abseits","Abzüglich","An","Anfangs","Angelegentlich","Angesichts","Anhand","Anlässlich","Anstatt","Anstelle","Auf","Aufgrund","Aus","Ausgenommen","Ausschließlich","Außer","Außerhalb","Bar","Behufs","Bei","Beiderseits,","Beidseits","Betreffs","Bezüglich","Binnen","Bis","Dank","Diesseits","Durch","Einbezüglich","Eingedenk","Einschließlich","Entgegen","Entlang","Entsprechend","Exklusive","Fern","Fernab","Für","Gegen","Gegenüber","Gelegentlich","Gemäß","Gen","Getreu","Gleich","Halber","Hinsichtlich","Hinter","In","InPuncto","Infolge","Inklusive","Inmitten","Innerhalb","Je","Jenseits","Kontra","Lang","Längs","Längsseits","Laut","Links","Mangels","Minus","Mit","Mitsamt","Mittels","Nach","Nächst","Nah,","Nahe","Namens","Neben","Nebst","Nördlich","Nordöstlich","Nordwestlich","Ob","Oberhalb","Ohne","Östlich","Per","Plus","Pro","Rechts","Rücksichtlich","Samt","Seit","Seitens","Seitlich","Sonder","Statt","Südlich","Südöstlich","Südwestlich","Trotz","Über","Um","Willen","Unfern","Ungeachtet","Unter","Unterhalb","Unweit","Vermittels","Vermöge","Vis-A-Vis","Vis-À-Vis","Von","VonSeiten","Vonseiten","Vor","Vorbehaltlich","Während","Wegen","Westlich","Wider","Zu","Zufolge","Zugunsten","Zulasten","Zuliebe","Zusätzlich","Zuungunsten","Zuwider","Zuzüglich","Zwecks","Zwischen"];
-      const articlesAndPrepositions = articles.concat(prepositions);
+      const reflexivePronouns = ["mich", "mir", "dich", "dir", "sich", "uns", "euch"];
+      const articlesAndPrepositionsAndRef = articles.concat(prepositions).concat(reflexivePronouns);
 
 
       const showAnswer = function(el) {
@@ -453,8 +454,8 @@
         t.innerHTML += resultHTML;
       });
 
-      let hideArticlesAndPrepositionsButton = document.getElementById('hideArticlesAndPrepositions');
-      hideArticlesAndPrepositionsButton.addEventListener('click', () => {
+      let hideArticlesAndPrepositionsAndRefButton = document.getElementById('hideArticlesAndPrepositionsAndRef');
+      hideArticlesAndPrepositionsAndRefButton.addEventListener('click', () => {
         let inputText = document.getElementById('textInput').value;
 
         let t = document.getElementById('resultText')
@@ -465,7 +466,7 @@
         tArr = tArr.map((ele) => {
 
           arr = ele.split(' ');
-          arr = arr.map(a=>{if(articlesAndPrepositions.includes(a)) { return `<span class='answer' onclick='showAnswer(this)'>${a}</span>` } else { return a}})
+          arr = arr.map(a=>{if(articlesAndPrepositionsAndRef.includes(a)) { return `<span class='answer' onclick='showAnswer(this)'>${a}</span>` } else { return a}})
 
 
           console.log(arr);
